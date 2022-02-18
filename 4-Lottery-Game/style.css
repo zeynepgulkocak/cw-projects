@@ -4,11 +4,11 @@
   box-sizing: border-box;
 }
 body{
-    background-image: url(./IMG/4244076.webp);
+    background-image: url(./IMG/bg.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
+height: 920px;
 }
 .container {
   display: flex;

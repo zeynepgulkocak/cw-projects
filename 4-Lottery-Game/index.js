@@ -9,41 +9,9 @@ let rand_sstar = 0;
 button.addEventListener("click", () => {
   number_box.innerHTML = "";
 
-  // if (txt_number.value < 9 && txt_number.value > 0) {
-  //   for (let i = 0; i < Number(txt_number.value); i++) {
-  //     let lucky = document.createElement("p");
-  //     lucky.classList.add("lucky");
-  //     number_box.appendChild(lucky);
-
-  //     // Lucky Numbers 6
-  //     for (let i = 0; i < 6; i++) {
-  //       rand_num = Math.floor(Math.random() * 90 + 1);
-  //       lucky_numbers.includes(rand_num) ? "" : (lucky_numbers[i] = rand_num);
-  //     }
-  //     lucky_numbers = lucky_numbers.sort(function (a, b) {
-  //       return a - b;
-  //     });
-  //     lucky.innerHTML = lucky_numbers;
-
-  //     // joker number
-
-  //     rand_joker = Math.floor(Math.random() * 90 + 1);
-  //     while (lucky_numbers.includes(rand_joker)) {
-  //       rand_joker = Math.floor(Math.random() * 90 + 1);
-  //     }
-  //     lucky.innerHTML += "| " + rand_joker;
-
-  //     // superstar number
-  //     rand_sstar = Math.floor(Math.random() * 90 + 1);
-  //     lucky.innerHTML += "| " + rand_sstar;
-  //   }
-  // } else alert("Please enter a number between 1-8 (both inclusive)");
-
   if (txt_number.value < 9 && txt_number.value > 0) {
     for (let i = 0; i < Number(txt_number.value); i++) {
-      // let lucky = document.createElement("p");
-      // lucky.classList.add("lucky");
-      // number_box.appendChild(lucky);
+
       // Lucky Numbers 6
       for (let i = 0; i < 6; i++) {
         let content_ball = document.createElement("div");
@@ -67,9 +35,6 @@ button.addEventListener("click", () => {
       for (let i = 0; i < lucky_numbers.length; i++) {
         numElements[i].innerHTML = lucky_numbers[i];
       }
-      // for (let i = 0; i < lucky_numbers.length; i++) {
-      //   num[i].innerHTML = lucky_numbers[i];
-      // }
 
       // joker number
       let content_ball1 = document.createElement("div");
@@ -106,6 +71,3 @@ button.addEventListener("click", () => {
     }
   } else alert("Please enter a number between 1-8 (both inclusive)");
 });
-
-// console.log(numElements);
-// console.log(lucky_numbers);
