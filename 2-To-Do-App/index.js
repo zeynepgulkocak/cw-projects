@@ -2,11 +2,11 @@ let btn_add = document.getElementById("btn-add");
 let content_box = document.getElementById("content_box");
 let input = document.getElementById("txt");
 
-
-
 btn_add.addEventListener("click", () => {
-  addElement();
-  input.value = "";
+  if (input.value != "") {
+    addElement();
+    input.value = "";
+  } else alert("Please write a task!");
 });
 
 function addElement() {
@@ -25,9 +25,7 @@ function addElement() {
   check.style.visibility = "hidden";
   lbl_note.classList.add("lbl-note");
   btn_del.classList.add("btn-del");
-  icon.classList.add("fas");
-  icon.classList.add("fa-trash");
-  icon.classList.add("fa-lg");
+  icon.classList.add("fas" ,"fa-trash", "fa-lg");
   // insert elements
   list_box.appendChild(btn_del);
   list_box.appendChild(check_box);
@@ -45,12 +43,13 @@ content_box.addEventListener("click", (e) => {
     e.target.parentElement.parentElement.remove();
   } else if (e.target.tagName === "LABEL") {
     if (e.target.style.textDecoration == "line-through") {
-      e.target.parentElement.childNodes[1].firstChild.style.visibility = "hidden";
+      e.target.parentElement.childNodes[1].firstChild.style.visibility =
+        "hidden";
       e.target.style.textDecoration = "none";
     } else {
       e.target.style.textDecoration = "line-through";
-      e.target.parentElement.childNodes[1].firstChild.style.visibility = "visible";
+      e.target.parentElement.childNodes[1].firstChild.style.visibility =
+        "visible";
     }
   }
 });
-
