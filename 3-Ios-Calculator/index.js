@@ -100,7 +100,7 @@ calculate.addEventListener("click", () => {
   number2 = Number(screen2.innerHTML);
   screen1.innerHTML = "";
   let result = 0;
-  if (isNaN(number1) || isNaN(number2)) {
+  if (isNaN(number1) && isNaN(number2)) {
     results.innerHTML = `lütfen bir sayı giriniz`;
   } else {
     switch (oparator) {
