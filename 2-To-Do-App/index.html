@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />  
-    <link rel="shortcut icon" href="./IMG/todo-favicon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="./IMG/todo-favicon.webp"
+      type="image/x-icon"
+    />
     <script
       src="https://kit.fontawesome.com/6b653e7b27.js"
       crossorigin="anonymous"
@@ -15,14 +19,28 @@
   <body>
     <div class="container">
       <div class="txt-box">
-        <input type="text" name="txt" id="txt" placeholder=" &#9998; Add item..." maxlength="39"/>
+        <input
+          type="text"
+          name="txt"
+          id="txt"
+          placeholder=" &#9998; Add item..."
+          maxlength="39"
+        />
         <a href="#" id="btn-add">
           <i class="fas fa-plus"></i>
         </a>
       </div>
-      <div class="content-box" id="content_box">
+      <a href="#" id="removeAll">Remove All</a>
+      <div class="content-box" id="content_box"></div>
+      <div id="footer">
+        <h3 class="count">
+          <p id="checkedTasks">0</p>
+          out of
+          <p id="allTasks">0</p>
+          tasks completed
+        </h3>
+      </div>
     </div>
-
     <script src="index.js"></script>
   </body>
 </html>

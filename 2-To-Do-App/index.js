@@ -1,55 +1,100 @@
 let btn_add = document.getElementById("btn-add");
 let content_box = document.getElementById("content_box");
 let input = document.getElementById("txt");
+let txt_box=document.querySelector(".txt-box");
+let removeAll=document.querySelector("#removeAll");
 
-btn_add.addEventListener("click", () => {
-  if (input.value != "") {
-    addElement();
-    input.value = "";
-  } else alert("Please write a task!");
+// display to local storage
+window.addEventListener("load", () => {
+  content_box.innerHTML = content_box.innerHTML == "" && localStorage.getItem("list_box");
+  completedTaskCount();
 });
 
+
+// create elements event
+btn_add.addEventListener("click", () => {
+  if (input.value != "") {
+    let newElement=document.createElement("div");
+    newElement.innerHTML=addElement();
+    content_box.prepend(newElement);
+  completedTaskCount();
+    input.value = "";
+    localStorageAdd();
+  } else alert("Please write a task!");
+});
+input.addEventListener("keypress", (e)=>{
+  if(e.key==="Enter"){
+    if (input.value != "") {
+      let newElement=document.createElement("div");
+    newElement.innerHTML=addElement();
+    content_box.prepend(newElement);
+  completedTaskCount();
+      input.value = "";
+      localStorageAdd();
+    } else alert("Please write a task!");
+  }
+});
+
+// create elements function
 function addElement() {
-  // create new elements
-  let list_box = document.createElement("div");
-  let check = document.createElement("span");
-  let lbl_note = document.createElement("label");
-  let btn_del = document.createElement("a");
-  let icon = document.createElement("i");
-  let check_box = document.createElement("div");
-
-  // add class
-  list_box.classList.add("list-box");
-  check_box.classList.add("check-box");
-  check.classList.add("check");
-  check.style.visibility = "hidden";
-  lbl_note.classList.add("lbl-note");
-  btn_del.classList.add("btn-del");
-  icon.classList.add("fas" ,"fa-trash", "fa-lg");
-  // insert elements
-  list_box.appendChild(btn_del);
-  list_box.appendChild(check_box);
-  list_box.appendChild(lbl_note);
-  btn_del.appendChild(icon);
-  check_box.appendChild(check);
-  content_box.insertBefore(list_box, content_box.firstChild);
-  check.innerHTML = "&#x2714;";
-
-  lbl_note.innerText = input.value[0].toUpperCase() + input.value.slice(1);
+  return ` <div class="list-box">
+  <a class="btn-del"><i class="fas fa-backspace fa-lg"></i></i></a>
+  <div class="check-box">
+    <span class="check" style="visibility: hidden">✔</span>
+  </div>
+  <label class="lbl-note">${input.value[0].toUpperCase() + input.value.slice(1)}</label>
+</div>`
 }
 
+// checked event
 content_box.addEventListener("click", (e) => {
   if (e.target.tagName === "I") {
     e.target.parentElement.parentElement.remove();
+    completedTaskCount();
+    localStorageAdd();
   } else if (e.target.tagName === "LABEL") {
+    let check=e.target.parentElement.querySelector(".check");
     if (e.target.style.textDecoration == "line-through") {
-      e.target.parentElement.childNodes[1].firstChild.style.visibility =
+     check.style.visibility =
         "hidden";
       e.target.style.textDecoration = "none";
+      e.target.classList = "lbl-note";
+      completedTaskCount();
+      localStorageAdd();
     } else {
       e.target.style.textDecoration = "line-through";
-      e.target.parentElement.childNodes[1].firstChild.style.visibility =
+      e.target.classList = "lbl-note checked";
+     check.style.visibility =
         "visible";
+      completedTaskCount();
+      localStorageAdd();
     }
   }
 });
+
+// completed task count
+const completedTaskCount = () => {
+  let checkedCount = content_box.getElementsByClassName("checked").length;
+  let taskCount = content_box.getElementsByClassName("list-box").length;
+  const checkedTasks = document.getElementById("checkedTasks");
+  const allTasks = document.getElementById("allTasks");
+  checkedTasks.innerText = checkedCount;
+  allTasks.innerText = taskCount;
+};
+completedTaskCount();
+
+// remove all local storage
+removeAll.addEventListener("click", ()=>{
+content_box.innerHTML="";
+  localStorage.removeItem("list_box");
+completedTaskCount();
+});
+
+// local storage add function
+let localStorageAdd= ()=>{
+  let list_box = document.querySelector(".list-box");
+  localStorage.setItem(
+    "list_box",
+    list_box.parentElement.parentElement.innerHTML
+  );
+}
